@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('url');
             $table->boolean('is_valid');
             $table->string('errors');
-            $table->string('tags');
+            $table->string('tags', 2000);
             $table->foreign('website_id')->references('id')->on('websites');
+            $table->timestamps();
         });
     }
 
