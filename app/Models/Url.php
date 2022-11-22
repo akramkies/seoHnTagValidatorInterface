@@ -18,6 +18,7 @@ class Url extends Model
         'url',
         'is_valid',
         'errors',
-        'tags'
+        'tags',
+        'website_id'
     ];
 }

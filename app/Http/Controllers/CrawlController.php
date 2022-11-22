@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessCrawl;
 use App\Models\Url;
 use App\Models\Website;
 use Illuminate\Http\Request;
-use Globalis\SeoHnTagValidator\SeoHnTagValidator;
-use App\Jobs\ProcessPodcast;
+use Illuminate\Support\Facades\DB;
 
 class CrawlController extends Controller
 {
     const IN_PROGRESS = 'in_progress';
+    const COMPLETE = 'complete';
 
     /**
      * Display a listing of the resource.
@@ -40,55 +41,30 @@ class CrawlController extends Controller
      */
     public function store(Request $request)
     {
+        $res = [];
+
         $validated = $request->validate([
             'url' => 'required|url',
             'concurrent' => 'numeric'
 
         ]);
 
-        $validator  = new SeoHnTagValidator();
-
         // Insert new crawl
         $website = [];
         $website['url'] = $validated['url'];
         $website['state'] = $this::IN_PROGRESS;
         $website['nb_crawled_page'] = 0;
-        Website::Create($website);
+        $ws = Website::Create($website);
 
-        // Start Crawling
-        $res = $validator->validateWebSite($validated['url']);
+        ProcessCrawl::dispatch($ws->id);
 
-        for ($i = 0; $i < count($res); $i++) {
-            $errors = "";
-            foreach( $res[$i]['errors'] as $error ) {
-                $errors = $errors . $error . " \ ";
-            }
-            if($errors === "") $errors = "0 errors";
-            $res[$i]['errors'] = $errors;
-            for($j = 0 ; $j < count($res[$i]['tags']); $j++ ) {
-                switch($res[$i]['tags'][$j]['tag']):
-                    case 'h2':
-                        $res[$i]['tags'][$j]['tag'] =  '--' . $res[$i]['tags'][$j]['tag'];
-                        break;
-                    case 'h3':
-                        $res[$i]['tags'][$j]['tag'] =  '----' . $res[$i]['tags'][$j]['tag'];
-                        break;
-                    case 'h4':
-                        $res[$i]['tags'][$j]['tag'] =  '------' . $res[$i]['tags'][$j]['tag'];
-                        break;
-                    case 'h5':
-                        $res[$i]['tags'][$j]['tag'] =  '--------' . $res[$i]['tags'][$j]['tag'];
-                        break;
-                    case 'h6':
-                        $res[$i]['tags'][$j]['tag'] =  '----------' . $res[$i]['tags'][$j]['tag'];
-                        break;
-                    default:
-                        break;
-                endswitch;
-            }
-        }
+        return view('validator.index',
+            [
+                'res' => $res,
+                'statut' => $this::IN_PROGRESS,
+                'url' => $validated['url']
 
-        return view('validator.index', ['res' => $res]);
+            ]);
     }
 
     /**
@@ -99,7 +75,19 @@ class CrawlController extends Controller
      */
     public function show($id)
     {
-        //
+        $ws = DB::table('websites')->where('id', $id)->first();
+        $res = DB::table('urls')->where('website_id', $id)->get();
+
+        foreach ($res as $value) {
+            $value->tags = explode(' ', $value->tags);
+        }
+
+        return view('validator.index',
+        [
+            'res' => $res,
+            'statut' => $ws->state,
+            'url' => $ws->url
+        ]);
     }
 
     /**

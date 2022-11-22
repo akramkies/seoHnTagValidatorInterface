@@ -28,8 +28,8 @@
                                 <input name="agree" type="checkbox" class="form-check-input" id="onlyErrors">
                                 <label class="form-check-label" for="onlyErrors">Display only errors</label>
                             </div>
-                            <button type="submit" class="btn btn-dark">Submit</button>
-                            <a href="{{ url('/') }}" class="btn btn-primary">History</a>
+                            <button type="submit" class="btn btn-dark">Crawl</button>
+                            <a href="{{ url('/') }}" class="btn btn-primary">Archive</a>
                         </form>
                     </fieldset>
                 </div>

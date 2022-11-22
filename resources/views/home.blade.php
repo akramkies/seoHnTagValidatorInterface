@@ -31,7 +31,7 @@
                     <td class="fw-bold"> {{$value->id}} </td>
 
                     <td>
-                        <a href="{{$value->url}}" target="_blank">
+                        <a href="{{ route('validator.show', $value->id) }}">
                             {{$value->url}}
                         </a>
                     </td>
