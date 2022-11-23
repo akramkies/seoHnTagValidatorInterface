@@ -11,7 +11,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
         <link href="{{ asset('styles/home.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
-
+        <meta name='robots' content='noindex, follow' />
 
         <!-- Custom styles for this page -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
