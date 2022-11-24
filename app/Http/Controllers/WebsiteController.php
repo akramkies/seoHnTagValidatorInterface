@@ -17,7 +17,7 @@ class WebsiteController extends Controller
     {
         $website->delete();
         return redirect()->route('websites.index')
-         ->withSuccess(__('Crawl delete successfully.'));
+         ->withSuccess(__('Crawl deleted successfully.'));
 
     }
 }

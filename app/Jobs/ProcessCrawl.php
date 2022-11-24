@@ -17,15 +17,19 @@ class ProcessCrawl implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $id;
+    private $onlyErrors;
+    private $concurrent;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($id, $onlyErrors, $concurrent)
     {
         $this->id = $id;
+        $this->onlyErrors = $onlyErrors;
+        $this->concurrent = $concurrent;
     }
 
     /**
@@ -40,7 +44,7 @@ class ProcessCrawl implements ShouldQueue
         $ws = DB::table('websites')->where('id', $this->id)->first();
 
         // // Start Crawling
-        $res = $validator->validateWebSite($ws->url);
+        $res = $validator->validateWebSite($ws->url, $this->onlyErrors, $this->concurrent);
 
         for ($i = 0; $i < count($res); $i++) {
             $errors = "";

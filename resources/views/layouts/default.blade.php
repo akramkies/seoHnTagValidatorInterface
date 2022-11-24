@@ -10,6 +10,7 @@
         <!-- Custom styles for this template -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
         <link href="{{ asset('styles/home.css') }}" rel="stylesheet">
+        <link href="{{ asset('styles/404.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
         <meta name='robots' content='noindex, follow' />
 

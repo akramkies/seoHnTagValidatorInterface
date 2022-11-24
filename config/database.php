@@ -125,7 +125,7 @@ return [
         'driver' => 'redis',
         'connection' => 'default',
         'queue' => '{default}',
-        'retry_after' => 3550,
+        'retry_after' => 4550,
         'block_for' => 5,
 
         'options' => [

@@ -45,9 +45,13 @@ class CrawlController extends Controller
 
         $validated = $request->validate([
             'url' => 'required|url',
-            'concurrent' => 'numeric'
+            'concurrent' => 'numeric|max:30|min:3',
+            'agree' => ''
 
         ]);
+
+        $onlyErrors = $request->agree !== null ? 1 : 0;
+        $concurrent = $validated['concurrent'];
 
         // Insert new crawl
         $website = [];
@@ -56,7 +60,7 @@ class CrawlController extends Controller
         $website['nb_crawled_page'] = 0;
         $ws = Website::Create($website);
 
-        ProcessCrawl::dispatch($ws->id);
+        ProcessCrawl::dispatch($ws->id, $onlyErrors, $concurrent);
 
         return view('validator.index',
             [
@@ -78,6 +82,9 @@ class CrawlController extends Controller
         $ws = DB::table('websites')->where('id', $id)->first();
         $res = DB::table('urls')->where('website_id', $id)->get();
 
+        if (is_null($ws)) {
+            return view('404');
+        }
         foreach ($res as $value) {
             $value->tags = explode(' ', $value->tags);
         }
