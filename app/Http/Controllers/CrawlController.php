@@ -8,6 +8,7 @@ use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Ramsey\Uuid\Uuid;
 class CrawlController extends Controller
 {
     const IN_PROGRESS = 'in_progress';
@@ -55,6 +56,9 @@ class CrawlController extends Controller
 
         // Insert new crawl
         $website = [];
+        $website['id'] = Uuid::uuid4()->toString();
+
+        //dd($website['id']);
         $website['url'] = $validated['url'];
         $website['state'] = $this::IN_PROGRESS;
         $website['nb_crawled_page'] = 0;

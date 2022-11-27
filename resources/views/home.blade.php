@@ -16,7 +16,6 @@
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Url</th>
                 <th>State</th>
                 <th>number of crawled pages</th>
@@ -28,8 +27,6 @@
         <tbody>
             @foreach($res as $value)
                 <tr>
-                    <td class="fw-bold"> {{$value->id}} </td>
-
                     <td>
                         <a href="{{ route('validator.show', $value->id) }}">
                             {{$value->url}}

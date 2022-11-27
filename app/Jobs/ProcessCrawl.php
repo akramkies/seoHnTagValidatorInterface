@@ -48,16 +48,19 @@ class ProcessCrawl implements ShouldQueue
 
         for ($i = 0; $i < count($res); $i++) {
             $errors = "";
+
             foreach( $res[$i]['errors'] as $error ) {
                 $errors = $errors . $error . " \ ";
             }
+
             if($errors === "") $errors = "0 errors";
             $res[$i]['errors'] = $errors;
             $tags = "";
+
             for($j = 0 ; $j < count($res[$i]['tags']); $j++ ) {
                 switch($res[$i]['tags'][$j]['tag']):
                     case 'h1':
-                        $tags = $tags . ' --' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' -' . $res[$i]['tags'][$j]['tag'] . "\n";
                         break;
                     case 'h2':
                         $tags = $tags . ' --' . $res[$i]['tags'][$j]['tag'] . "\n";
@@ -78,6 +81,7 @@ class ProcessCrawl implements ShouldQueue
                         break;
                 endswitch;
             }
+
             $res[$i]['website_id'] = $this->id;
             $res[$i]['is_valid'] = $res[$i]['is_valid'] === 'true' ? true : false;
             $res[$i]['tags'] = $tags;

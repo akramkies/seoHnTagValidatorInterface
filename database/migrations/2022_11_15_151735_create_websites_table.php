@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('websites', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->string('url');
             $table->enum('state', ['in_progress', 'complete']);
             $table->integer('nb_crawled_page');

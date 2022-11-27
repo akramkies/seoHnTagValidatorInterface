@@ -23,12 +23,19 @@ class Website extends Model
         });
     }
 
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'url',
         'state',
         'nb_crawled_page',

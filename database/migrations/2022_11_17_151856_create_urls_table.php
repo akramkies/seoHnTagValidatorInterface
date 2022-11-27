@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('website_id');
+            $table->string('website_id');
             $table->string('url');
             $table->boolean('is_valid');
             $table->string('errors');
