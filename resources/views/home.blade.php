@@ -16,6 +16,7 @@
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
+                <th></th>
                 <th>Url</th>
                 <th>State</th>
                 <th>number of crawled pages</th>
@@ -27,6 +28,22 @@
         <tbody>
             @foreach($res as $value)
                 <tr>
+                    <td class="retry">
+                        <form method="POST" action="{{ route('validator.store') }}">
+                            @csrf
+                            <div class="mb-3 d-none">
+                                <input type="url" class="form-control" name="url" value="{{ $value->url }}">
+                            </div>
+
+                            <div class="mb-3 d-none">
+                                <input type="number" class="form-control" id="concurrent" name="concurrent" value="9" >
+                            </div>
+                            <button type="submit" class="btn btn-link retry">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </form>
+                    </td>
+
                     <td>
                         <a href="{{ route('validator.show', $value->id) }}">
                             {{$value->url}}

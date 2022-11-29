@@ -25,3 +25,12 @@ legend.scheduler-border {
     height: 100%;
     margin-top: 15%;
 }
+
+.retry {
+    cursor: pointer;
+    align-self: center;
+}
+
+.retry > i {
+    color: #000;
+}

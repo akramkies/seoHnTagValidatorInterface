@@ -14,6 +14,9 @@
         <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
         <meta name='robots' content='noindex, follow' />
 
+        {{-- icons --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <!-- Custom styles for this page -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
         <title>Hn Tag Validator</title>
