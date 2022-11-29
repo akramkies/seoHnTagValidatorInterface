@@ -16,6 +16,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "laravel/ui": "^4.1",
         "pda/pheanstalk": "~4.0",
         "ramsey/uuid": "^4.6"
     },

@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WebsiteController::class, 'index']);
+//Route::get('/', [WebsiteController::class, 'index']);
 Route::resource('websites', WebsiteController::class);
 
 Route::resource('validator',CrawlController::class);
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

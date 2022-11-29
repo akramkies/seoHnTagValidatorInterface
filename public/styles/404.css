@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
 	main {
 		width: 100vw;
-		background: #fff;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
