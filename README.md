@@ -1,6 +1,6 @@
-<h1 style="font-size: 30px;" align="center">
+<p style="font-weight: bold; font-size: 70px;" align="center">
 Seo Hn Tag validator
-<h1>
+<p>
 
 <p align="center">
     <a href="https://packagist.org/packages/laravel/framework">
