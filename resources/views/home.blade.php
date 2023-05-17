@@ -18,7 +18,7 @@
             <tr>
                 <th></th>
                 <th>Url</th>
-                <th>State</th>
+                <th>Status</th>
                 <th>number of crawled pages</th>
                 <th>Crawl date</th>
                 <th>&nbsp;</th>
@@ -51,7 +51,7 @@
                     </td>
 
                     <td class="<?= $value->state === 'complete' ? 'text-success' : 'text-warning' ?>">
-                        {{$value->state}}
+                        <?= $value->state === 'complete' ? 'Complete' : 'In progress' ?>
                     </td>
 
                     <td> {{$value->nb_crawled_page}} </td>

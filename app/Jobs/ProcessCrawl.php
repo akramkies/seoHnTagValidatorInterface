@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Http\Controllers\CrawlController;
 use App\Models\Url;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -60,22 +59,22 @@ class ProcessCrawl implements ShouldQueue
             for($j = 0 ; $j < count($res[$i]['tags']); $j++ ) {
                 switch($res[$i]['tags'][$j]['tag']):
                     case 'h1':
-                        $tags = $tags . ' -' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' -' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     case 'h2':
-                        $tags = $tags . ' --' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' --' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     case 'h3':
-                        $tags = $tags . ' ----' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' ----' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     case 'h4':
-                        $tags = $tags . ' ------' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' ------' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     case 'h5':
-                        $tags = $tags . ' --------' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' --------' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     case 'h6':
-                        $tags = $tags . ' ----------' . $res[$i]['tags'][$j]['tag'] . "\n";
+                        $tags = $tags . ' ----------' . $res[$i]['tags'][$j]['tag'] . PHP_EOL;
                         break;
                     default:
                         break;
